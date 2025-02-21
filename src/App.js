@@ -14,7 +14,7 @@
     //footer
     //---links, copyright, 
 
-import React, { lazy,Suspense } from "react";
+import React, { lazy,Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 //Default import
 import Header,{Title} from "./components/Header.jsx";
@@ -29,8 +29,9 @@ import Contact from "./components/contact.jsx";
 import { Outlet } from "react-router";
 import RestrauntMenu from "./components/RestrauntMenu.jsx";
 import Profile from "./components/Profile.jsx"; 
-
-
+import { Provider } from "react-redux";
+import store from "./utils/store.js";
+import Cart from "./components/Cart.jsx";
 
 const GharKaMart = lazy(() => import("./components/GharKaMart.jsx"));
 const About = lazy(() => import("./components/About.jsx"));
@@ -46,13 +47,23 @@ const About = lazy(() => import("./components/About.jsx"));
 
 
 const AppLayout = () =>{
+
+// const [user, setUser] = useState({
+//   names: "Shashank",
+//   email: "shashank01@gmail.com",
+// });
+
+
+
   return(
   <>
   <>
+  <Provider store={store}>
     <Header />
     {/* Outlet is use similar as an polaceholder , for the thing it will contain for ex. about etc */}
     <Outlet/>
     <Footer />  
+    </Provider>
     </>  
   </>
   );
@@ -88,7 +99,7 @@ const appRouter = createBrowserRouter([
       },
       
       {
-        path: "/restraunt/resId:",
+        path: "/restraunt/:resId",
     element: <RestrauntMenu/>,
     errorElement: <Error/>,
       },
@@ -100,6 +111,11 @@ const appRouter = createBrowserRouter([
             </Suspense>
         ),
         errorElement: <Error />,
+    },
+    {
+      path: "/cart",
+      element: <Cart />,
+      
     }
     ]
   },

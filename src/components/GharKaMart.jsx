@@ -13,7 +13,7 @@ const GharKaMart = () => {
   return (
     <div className="mart-container">
       {/* Hero Section */}
-      <section className="hero">
+        <section className="hero">
         <div className="hero-content">
           <h1>Welcome to GharKaMart</h1>
           <p>Your trusted partner for all household needs!</p>

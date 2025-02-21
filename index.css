@@ -550,3 +550,19 @@ a:hover {
 .mart-footer p:after {
   content: " 🏡";
 }
+.cart-btn {
+  background-color: transparent; /* No background initially */
+  color: black; /* Normal text color */
+  padding: 8px 16px;
+  border: none;
+  font-size: 16px;
+  font-weight: normal; /* Ensuring text is not bold */
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.cart-btn:hover {
+  background-color: #007bff; /* Blue color on hover */
+  color: white;
+  transform: scale(1.05); /* Slight zoom effect */
+}

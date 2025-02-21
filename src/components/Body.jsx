@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
 import {filterData} from "../utils/helper"
-import useOnline from "../utils/Hooks/useOnline";
+import useOnline from "../utils/useOnline";
 import OfflinePage from "./OfflinePage";
 
 const Body = () => {

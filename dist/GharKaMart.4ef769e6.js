@@ -695,7 +695,7 @@ const GharKaMart = ()=>{
             }, void 0, false, {
                 fileName: "src/components/GharKaMart.jsx",
                 lineNumber: 24,
-                columnNumber: 7
+                columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("section", {
                 className: "categories",

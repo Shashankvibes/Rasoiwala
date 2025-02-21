@@ -1,14 +1,28 @@
 import React, { useState } from "react";
 import resList from "../utils/mockdata";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 const RestaurantMenu = () => {
   const [resInfo] = useState(resList);
   const [searchTerm, setSearchTerm] = useState("");
+  const dispatch = useDispatch();
 
-  // Filtered restaurants based on search term
   const filteredRestaurants = resInfo.filter((restaurant) =>
     restaurant?.data?.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const addFoodItem = (item) => {
+    const foodItem = {
+      id: item.data.id,
+      name: item.data.name,
+      image: `https://b.zmtcdn.com/data/pictures/5/18808035/c9677661058854b4d41bfab5dbddd6ac.jpg?fit=around|750:500&crop=750:500=${item?.data?.name}`,
+      cuisine: item.data.cuisines?.join(", ") || "Cuisines Unavailable",
+      rating: item.data.avgRating || "N/A",
+    };
+
+    dispatch(addItem(foodItem));
+  };
 
   return (
     <div className="bg-gray-100 min-h-screen p-6">
@@ -32,7 +46,7 @@ const RestaurantMenu = () => {
               className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transform transition duration-300"
             >
               <img
-                src={`https://b.zmtcdn.com/data/pictures/5/18808035/c9677661058854b4d41bfab5dbddd6ac.jpg?fit=around|750:500&crop=750:500;*,*=${restaurant?.data?.name}`}
+                src={`https://b.zmtcdn.com/data/pictures/5/18808035/c9677661058854b4d41bfab5dbddd6ac.jpg?fit=around|750:500&crop=750:500=${restaurant?.data?.name}`}
                 alt={restaurant?.data?.name}
                 className="w-full h-40 object-cover"
               />
@@ -55,8 +69,11 @@ const RestaurantMenu = () => {
                   >
                     ⭐ {restaurant?.data?.avgRating || "N/A"}
                   </span>
-                  <button className="px-4 py-2 bg-orange-500 text-white text-sm font-semibold rounded-lg hover:bg-orange-600 transition duration-300">
-                    Order Now
+                  <button 
+                    className="px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-lg hover:bg-blue-600 transition duration-300" 
+                    onClick={() => addFoodItem(restaurant)}
+                  >
+                    Add Item
                   </button>
                 </div>
               </div>
